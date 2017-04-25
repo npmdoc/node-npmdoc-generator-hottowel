@@ -802,7 +802,23 @@
 
   return child;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var yeoman = require(&#x27;yeoman-generator&#x27;);
+var yosay = require(&#x27;yosay&#x27;);
+var chalk = require(&#x27;chalk&#x27;);
+var _ = require(&#x27;lodash&#x27;);
+var str = require(&#x27;underscore.string&#x27;);
+_.mixin(str);
+
+var HotTowelGenerator = yeoman.Base.<span class="apidocCodeKeywordSpan">extend</span>({
+
+  constructor: function() {
+// arguments and options should be
+// defined in the constructor.
+yeoman.Base.apply(this, arguments);
+
+this.argument(&#x27;appName&#x27;, { type: String, required: false });
+...</pre></li>
     </ul>
 
 
@@ -1124,7 +1140,23 @@
   this.checkRequiredArgs();
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var HotTowelGenerator = yeoman.Base.extend({
+
+constructor: function() {
+  // arguments and options should be
+  // defined in the constructor.
+  yeoman.Base.apply(this, arguments);
+
+  this.<span class="apidocCodeKeywordSpan">argument</span>(&#x27;appName&#x27;, { type: String, required: false });
+  this.appName = _.camelize(_.slugify(_.humanize(this.appName)));
+},
+
+welcome: function() {
+  this.log(yosay(
+    &#x27;Welcome to the HotTowel AngularJS generator!&#x27;
+  ));
+...</pre></li>
     </ul>
 
 
@@ -1182,7 +1214,23 @@
     <li>description and source-code<pre class="apidocCodePre">function install(cmpnt, options, cb) {
   return this.runInstall(&#x27;bower&#x27;, cmpnt, options, cb);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  runNpm: function() {
+    //        var done = this.async();
+    //        this.npmInstall(&#x27;&#x27;, function () {
+    //            console.log(&#x27;\nEverything Setup!\n&#x27;);
+    //            done();
+    //        });
+    this.npmInstall();
+    //              this.<span class="apidocCodeKeywordSpan">bowerInstall</span>();
+    console.log(&#x27;\nEverything Setup !!!\n&#x27;);
+  },
+
+  end: function() {
+    //        this.installDependencies();
+  }
+});
+...</pre></li>
     </ul>
 
 
@@ -1348,7 +1396,23 @@
 
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+},
+
+packageFiles: function() {
+  var context = {
+    appName: this.appName
+  };
+
+  this.<span class="apidocCodeKeywordSpan">copy</span>(&#x27;_package.json&#x27;, &#x27;package.json&#x27;);
+  this.template(&#x27;_bower.json&#x27;, &#x27;bower.json&#x27;);
+  this.template(&#x27;_gulpfile.js&#x27;, &#x27;gulpfile.js&#x27;);
+  this.template(&#x27;_gulp.config.js&#x27;, &#x27;gulp.config.js&#x27;);
+  this.template(&#x27;_protractor.config.js&#x27;, &#x27;protractor.config.js&#x27;);
+  this.template(&#x27;_karma.conf.js&#x27;, &#x27;karma.conf.js&#x27;);
+  this.template(&#x27;_README.md&#x27;, &#x27;README.md&#x27;);
+},
+...</pre></li>
     </ul>
 
 
@@ -1469,7 +1533,22 @@
     <li>description and source-code<pre class="apidocCodePre">function directory(source, destination, process) {
   return this._directory(source, destination, process);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  },
+
+  testRunnerFiles: function() {
+this.template(&#x27;src/client/_specs.html&#x27;, &#x27;src/client/specs.html&#x27;);
+  },
+
+  appFiles: function() {
+this.<span class="apidocCodeKeywordSpan">directory</span>(&#x27;src/client/app&#x27;);
+this.directory(&#x27;src/client/images&#x27;);
+this.directory(&#x27;src/client/styles&#x27;);
+this.directory(&#x27;src/client/test&#x27;);
+this.directory(&#x27;src/client/test-helpers&#x27;);
+
+this.template(&#x27;src/client/_index.html&#x27;, &#x27;src/client/index.html&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -1733,7 +1812,20 @@
 
   async.parallel(commands, options.callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    //        });
+    this.npmInstall();
+    //              this.bowerInstall();
+    console.log(&#x27;\nEverything Setup !!!\n&#x27;);
+  },
+
+  end: function() {
+    //        this.<span class="apidocCodeKeywordSpan">installDependencies</span>();
+  }
+});
+
+module.exports = HotTowelGenerator;
+...</pre></li>
     </ul>
 
 
@@ -1796,7 +1888,23 @@
     <li>description and source-code<pre class="apidocCodePre">function install(pkgs, options, cb) {
   return this.runInstall(&#x27;npm&#x27;, pkgs, options, cb);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  this.copy(&#x27;jscsrc&#x27;, &#x27;.jscsrc&#x27;);
+  this.copy(&#x27;bowerrc&#x27;, &#x27;.bowerrc&#x27;);
+  this.copy(&#x27;gitignore&#x27;, &#x27;.gitignore&#x27;);
+},
+
+runNpm: function() {
+  //        var done = this.async();
+  //        this.<span class="apidocCodeKeywordSpan">npmInstall</span>(&#x27;&#x27;, function () {
+  //            console.log(&#x27;\nEverything Setup!\n&#x27;);
+  //            done();
+  //        });
+  this.npmInstall();
+  //              this.bowerInstall();
+  console.log(&#x27;\nEverything Setup !!!\n&#x27;);
+},
+...</pre></li>
     </ul>
 
 
@@ -1962,7 +2070,23 @@
 
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var prompts = [{
+    type: &#x27;input&#x27;,
+    name: &#x27;appName&#x27;,
+    message: &#x27;What would you like to name the app?&#x27;,
+    default: this.appName || path.basename(process.cwd())
+  }];
+
+  this.<span class="apidocCodeKeywordSpan">prompt</span>(prompts, function(answers) {
+    this.appName = answers.appName;
+    this.appName = this.appName || &#x27;hottowel&#x27;; //path.basename(process.cwd());
+    done();
+  }.bind(this));
+},
+
+displayName: function() {
+...</pre></li>
     </ul>
 
 
@@ -2543,7 +2667,22 @@
   );
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+packageFiles: function() {
+  var context = {
+    appName: this.appName
+  };
+
+  this.copy(&#x27;_package.json&#x27;, &#x27;package.json&#x27;);
+  this.<span class="apidocCodeKeywordSpan">template</span>(&#x27;_bower.json&#x27;, &#x27;bower.json&#x27;);
+  this.template(&#x27;_gulpfile.js&#x27;, &#x27;gulpfile.js&#x27;);
+  this.template(&#x27;_gulp.config.js&#x27;, &#x27;gulp.config.js&#x27;);
+  this.template(&#x27;_protractor.config.js&#x27;, &#x27;protractor.config.js&#x27;);
+  this.template(&#x27;_karma.conf.js&#x27;, &#x27;karma.conf.js&#x27;);
+  this.template(&#x27;_README.md&#x27;, &#x27;README.md&#x27;);
+},
+...</pre></li>
     </ul>
 
 
