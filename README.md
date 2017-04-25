@@ -1,6 +1,6 @@
 # npmdoc-generator-hottowel
 
-#### api documentation for  [generator-hottowel (v0.5.0)](https://github.com/johnpapa/generator-hottowel#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-generator-hottowel.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-generator-hottowel) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-generator-hottowel.svg)](https://travis-ci.org/npmdoc/node-npmdoc-generator-hottowel)
+#### basic api documentation for  [generator-hottowel (v0.5.0)](https://github.com/johnpapa/generator-hottowel#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-generator-hottowel.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-generator-hottowel) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-generator-hottowel.svg)](https://travis-ci.org/npmdoc/node-npmdoc-generator-hottowel)
 
 #### Yeoman generator for HotTowel Angular
 
@@ -76,7 +76,8 @@
     "scripts": {
         "test": "mocha"
     },
-    "version": "0.5.0"
+    "version": "0.5.0",
+    "bin": {}
 }
 ```
 
